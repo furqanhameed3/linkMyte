@@ -10,19 +10,31 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
-import {COLORS, IMAGES, Ionicons} from '../../../constants';
+import {COLORS, IMAGES, Ionicons, h} from '../../../constants';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/native';
 import Button from '../../../components/Button';
-import NfcManager, {NfcTech} from 'react-native-nfc-manager';
 
-NfcManager.start();
 const Cards = ({navigation}: any) => {
   const {token} = useSelector((state: any) => state.employeeReducer);
   const isFocused = useIsFocused();
   const [modalVisible, setModalVisible] = useState(false);
   const [cardsList, setCardsList] = useState();
+  const [url, setUrl] = useState();
+  const [id, setId] = useState();
+  const [firstName, setFirstName] = useState();
+  const [jobTitle, setJobTitle] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [address, setAddress] = useState();
+  const [city, setCity] = useState();
+  const [state, setState] = useState();
+  const [country, setCountry] = useState();
+  const [zip, setZip] = useState();
+  const [cardNumber, setCardNumber] = useState();
+
   useEffect(() => {
     if (isFocused) {
       getCardsList();
@@ -38,7 +50,7 @@ const Cards = ({navigation}: any) => {
       setCardsList(response?.data?.data?.data);
       console.log(
         'cards-listing Api Response()',
-        JSON.stringify(response.data.data.data, null, 4),
+        JSON.stringify(response.data.data, null, 4),
       );
     } catch (error: any) {
       console.log('ERROR getAllPosts() API ', JSON.stringify(error, null, 4));
@@ -48,54 +60,6 @@ const Cards = ({navigation}: any) => {
       };
     }
   };
-
-  const readNdef = async () => {
-    try {
-      // register for the NFC tag with NDEF in it
-      await NfcManager.requestTechnology(NfcTech.Ndef);
-      // the resolved tag object will contain `ndefMessage` property
-      const tag = await NfcManager.getTag();
-      console.warn('Tag found', tag);
-    } catch (ex) {
-      console.warn('Oops!', ex);
-    } finally {
-      // stop the nfc scanning
-      NfcManager.cancelTechnologyRequest();
-    }
-  };
-
-  const handlePress = () => {
-    readNdef();
-    setModalVisible(false);
-    navigation.navigate('ReadNfc');
-  };
-
-  const cardsData = [
-    {
-      image: IMAGES.profileImg,
-      name: 'First Name',
-      card_link_status: 1,
-      card_Num: 'ABC1243',
-    },
-    {
-      image: IMAGES.profileImg,
-      name: 'First Name',
-      card_link_status: 0,
-      card_Num: 'ABC1243',
-    },
-    {
-      image: IMAGES.profileImg,
-      name: 'First Name',
-      card_link_status: 1,
-      card_Num: 'ABC1243',
-    },
-    {
-      image: IMAGES.profileImg,
-      name: 'First Name',
-      card_link_status: 1,
-      card_Num: 'ABC1243',
-    },
-  ];
 
   return (
     <View style={styles.container}>
@@ -115,12 +79,26 @@ const Cards = ({navigation}: any) => {
           placeholder="Search"
         />
       </View>
+      <View
+        style={{
+          borderBottomWidth: 0.8,
+          paddingHorizontal: h('2%'),
+          marginVertical: 15,
+          borderBottomColor: COLORS.gray,
+        }}
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={cardsList}
         renderItem={({item}) => (
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}
+            onPress={() => {
+              setModalVisible(true);
+              setUrl(item?.short_code_url);
+              setId(item?.id);
+              setFirstName(item?.first_name);
+              setJobTitle(item?.job_title);
+            }}
             style={styles.cardWrapper}>
             <View style={styles.cardProfile}>
               <Image
@@ -170,11 +148,27 @@ const Cards = ({navigation}: any) => {
               <Button
                 primary
                 title="Edit"
-                onPress={() => navigation.navigate('EditCard')}
+                onPress={() => {
+                  navigation.navigate('EditCard', {
+                    url: url,
+                    id: id,
+                    firs_tName: firstName,
+                    job_Title: jobTitle,
+                  });
+                  setModalVisible(false);
+                }}
               />
               <Button
-                onPress={() => navigation.navigate('ReadNfc')}
-                // onPress={() => handlePress()}
+                // onPress={() => navigation.navigate('ReadNfc')}
+                onPress={() => {
+                  navigation.navigate('ReadNfc', {
+                    url: url,
+                    id: id,
+                    first_Name: firstName,
+                    job_Title: jobTitle,
+                  });
+                  setModalVisible(false);
+                }}
                 title="Link with NFC"
               />
             </View>

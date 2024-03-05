@@ -8,7 +8,7 @@ const Button = ({title, loading, primary, secondary, ...rest}: any) => {
     ...rest,
   };
   return (
-    <View>
+    <View style={{width: '100%'}}>
       {primary ? (
         <TouchableOpacity
           {...touchprops}

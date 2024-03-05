@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {COLORS, FONTS, FONT_SIZES, h} from '../../constants';
+import {COLORS, FONTS, FONT_SIZES, h, w} from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.8,
     borderColor: COLORS.black,
     borderRadius: 10,
-
     marginTop: h('2%'),
   },
   logoBtn: {
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    width: '35%',
+    width: '100%',
   },
   logoTxt: {
     color: '#5E0DD3',
@@ -51,6 +50,33 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 5,
     alignSelf: 'center',
+  },
+  dropdownType: {
+    height: h('6.5%'),
+    borderRadius: 10,
+    paddingLeft: w('4%'),
+    paddingHorizontal: w('2%'),
+    borderWidth: 0.8,
+    marginTop: h('2%'),
+    backgroundColor: COLORS.white,
+  },
+  placeholderStyle: {
+    color: COLORS.secondary50,
+    fontWeight: '400',
+    fontFamily: FONTS.regular,
+    fontSize: FONT_SIZES.small,
+  },
+  itemTextStyle: {
+    color: COLORS.primary1,
+    fontWeight: '400',
+    fontFamily: FONTS.medium,
+    fontSize: FONT_SIZES.small,
+  },
+  selectedTextStyle: {
+    color: COLORS.secondary,
+    fontWeight: '400',
+    fontFamily: FONTS.medium,
+    fontSize: FONT_SIZES.small,
   },
 });
 
