@@ -6,6 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: h('2%'),
   },
+  label: {
+    fontFamily: FONTS.medium,
+    fontSize: 13,
+    color: COLORS.black,
+    marginTop: h('2%'),
+  },
   inputContainer: {
     height: 45,
     backgroundColor: COLORS.white,
@@ -13,7 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.8,
     borderColor: COLORS.black,
     borderRadius: 10,
-    marginTop: h('2%'),
+    marginTop: h('1%'),
   },
   logoBtn: {
     marginTop: h('4%'),
@@ -77,6 +83,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: FONTS.medium,
     fontSize: FONT_SIZES.small,
+  },
+  txtError: {
+    color: COLORS.redNCS,
+    fontFamily: FONTS.medium,
+    fontSize: FONT_SIZES.tiny,
+    marginTop: h('0.5%'),
+    alignSelf: 'flex-end',
   },
 });
 

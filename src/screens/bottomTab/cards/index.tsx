@@ -24,17 +24,32 @@ const Cards = ({navigation}: any) => {
   const [url, setUrl] = useState();
   const [id, setId] = useState();
   const [firstName, setFirstName] = useState();
-  const [jobTitle, setJobTitle] = useState();
   const [lastName, setLastName] = useState();
+  const [jobTitle, setJobTitle] = useState();
+  const [gender, setGender] = useState();
+  const [bio, setBio] = useState();
+  const [arFirstName, setArFirstName] = useState();
+  const [arLastName, setArLastName] = useState();
+  const [arJobTitle, setArJobTitle] = useState();
+  const [arBio, setArBio] = useState();
+  const [logo, setLogo] = useState();
+  const [profileImg, setProfileImg] = useState();
+  const [instagram, setInstagram] = useState();
+  const [youtube, setYoutube] = useState();
+  const [linkedIn, setLinkedIN] = useState();
+  const [twitter, setTwitter] = useState();
+  const [snapchat, setSnapchat] = useState();
+  const [facebook, setFacebook] = useState();
+  const [phone1, setPhone1] = useState();
+  const [phone2, setPhone2] = useState();
+  const [whatsapp1, setWhatsapp1] = useState();
+  const [whatsapp2, setWhatsapp2] = useState();
+  const [googlemap, setGooglemap] = useState();
   const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
-  const [state, setState] = useState();
-  const [country, setCountry] = useState();
-  const [zip, setZip] = useState();
-  const [cardNumber, setCardNumber] = useState();
-
+  const [tiktok, setTiktok] = useState();
+  const [thread, setThread] = useState();
+  const [pdfLink, setPdfLink] = useState();
+  const [website, setWebsite] = useState();
   useEffect(() => {
     if (isFocused) {
       getCardsList();
@@ -98,6 +113,31 @@ const Cards = ({navigation}: any) => {
               setId(item?.id);
               setFirstName(item?.first_name);
               setJobTitle(item?.job_title);
+              setLastName(item?.last_name);
+              setBio(item?.company_desc);
+              setGender(item?.gender);
+              setArFirstName(item?.ar_first_name);
+              setArLastName(item?.ar_last_name);
+              setArJobTitle(item?.ar_job_title);
+              setArBio(item?.ar_company_desc);
+              setLogo(item?.brand_logo);
+              setProfileImg(item?.profile_pic);
+              setInstagram(item?.instagramlink);
+              setYoutube(item?.youtublelink);
+              setLinkedIN(item?.linkedinlink);
+              setTwitter(item?.twitterlink);
+              setSnapchat(item?.snapchatlink);
+              setFacebook(item?.facebooklink);
+              setPhone1(item?.mobile);
+              setPhone2(item?.second_mobile_no);
+              setWhatsapp1(item?.whatsup_number);
+              setWhatsapp2(item?.second_whatsup_number);
+              setGooglemap(item?.googlemaplink);
+              setEmail(item?.email);
+              setTiktok(item?.tiktoklink);
+              setThread(item?.threadlink);
+              setPdfLink(item?.pdflink);
+              setWebsite(item?.website);
             }}
             style={styles.cardWrapper}>
             <View style={styles.cardProfile}>
@@ -150,10 +190,34 @@ const Cards = ({navigation}: any) => {
                 title="Edit"
                 onPress={() => {
                   navigation.navigate('EditCard', {
-                    url: url,
                     id: id,
-                    firs_tName: firstName,
+                    first_Name: firstName,
+                    lastName: lastName,
                     job_Title: jobTitle,
+                    bio: bio,
+                    gendar: gender,
+                    ar_First_Name: arFirstName,
+                    ar_Last_Name: arLastName,
+                    ar_Job_Title: arJobTitle,
+                    ar_Bio: arBio,
+                    brand_logo: logo,
+                    profileImg: profileImg,
+                    instagram: instagram,
+                    youtube: youtube,
+                    linkedIn: linkedIn,
+                    twitter: twitter,
+                    snapchat: snapchat,
+                    facebook: facebook,
+                    phone1: phone1,
+                    phone2: phone2,
+                    whatsapp1: whatsapp1,
+                    whatsapp2: whatsapp2,
+                    email: email,
+                    website: website,
+                    googlemap: googlemap,
+                    tiktok: tiktok,
+                    thread: thread,
+                    pdfLink: pdfLink,
                   });
                   setModalVisible(false);
                 }}
@@ -164,8 +228,6 @@ const Cards = ({navigation}: any) => {
                   navigation.navigate('ReadNfc', {
                     url: url,
                     id: id,
-                    first_Name: firstName,
-                    job_Title: jobTitle,
                   });
                   setModalVisible(false);
                 }}
