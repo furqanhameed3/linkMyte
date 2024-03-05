@@ -23,5 +23,6 @@ const IMAGES = {
   website: require('../assets/images/website.png'),
   gmail: require('../assets/images/gmail.png'),
   email: require('../assets/images/email.png'),
+  doneGif: require('../assets/images/Done.gif'),
 };
 export {IMAGES};

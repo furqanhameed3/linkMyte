@@ -7,7 +7,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {COLORS, IMAGES, h} from '../../constants';
 import Button from '../../components/Button';
@@ -53,6 +53,7 @@ const EditCard = ({navigation, route}: any) => {
   const [image, setImage] = useState();
   const [logo, setLogo] = useState();
   const [gender, setGender] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const genderData = [
     {label: 'male', value: 0},
     {label: 'female', value: 1},
@@ -262,6 +263,10 @@ const EditCard = ({navigation, route}: any) => {
       formData.append('card_language', 1);
       formData.append('premium_status', 1);
       formData.append('subscription_status', 1);
+
+      setIsLoading(true);
+      console.log('working');
+
       const response = await axios.post('cards-detials-update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -269,7 +274,6 @@ const EditCard = ({navigation, route}: any) => {
         },
       });
       console.log('form Data', formData);
-
       console.log('SUCCESS Update API', JSON.stringify(response, null, 4));
       Alert.alert(response?.data?.message);
       navigation.reset({
@@ -285,6 +289,11 @@ const EditCard = ({navigation, route}: any) => {
       };
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, [onSubmit]);
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -706,6 +715,11 @@ const EditCard = ({navigation, route}: any) => {
           </View>
         </View> */}
       </ScrollView>
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <Image source={IMAGES.doneGif} />
+        </View>
+      ) : null}
     </View>
   );
 };

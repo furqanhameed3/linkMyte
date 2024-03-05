@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LinkMyte want to use your Gallery to upload Photos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>LinkMyte want to use your Camera to capture Photos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LinkMyte want to use your mic</string>
+	<key>NFCReaderUsageDescription</key>
+   <string>We need to use NFC</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -68,5 +76,21 @@
 		<string>Poppins-Thin.ttf</string>
 		<string>Poppins-ThinItalic.ttf</string>
 	</array>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+  <array>
+    <string>D2760000850100</string>
+    <string>D2760000850101</string>
+  </array>
+  <key>com.apple.developer.nfc.readersession.felica.systemcodes</key>
+<array>
+  <string>8005</string>
+  <string>8008</string>
+  <string>0003</string>
+  <string>fe00</string>
+  <string>90b7</string>
+  <string>927a</string>
+  <string>12FC</string>
+  <string>86a7</string>
+</array>
 </dict>
 </plist>

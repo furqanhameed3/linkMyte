@@ -91,6 +91,12 @@ const styles = StyleSheet.create({
     marginTop: h('0.5%'),
     alignSelf: 'flex-end',
   },
+  loadingContainer: {
+    height: '100%',
+    backgroundColor: COLORS.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
