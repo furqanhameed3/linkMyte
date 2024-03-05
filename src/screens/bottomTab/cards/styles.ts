@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: h('2%'),
     marginBottom: h('2%'),
+    height:55
   },
   txtInput: {
     marginLeft: 5,

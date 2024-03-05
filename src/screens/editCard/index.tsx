@@ -6,19 +6,19 @@ import {
   TouchableOpacity,
   Image,
   Alert,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import styles from './styles';
-import {COLORS, IMAGES, h} from '../../constants';
-import Button from '../../components/Button';
-import {Formik} from 'formik';
-import axios from 'axios';
-import {useSelector} from 'react-redux';
-import ImagePicker from 'react-native-image-crop-picker';
-import {Dropdown} from 'react-native-element-dropdown';
-import * as Yup from 'yup';
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import styles from "./styles";
+import { COLORS, IMAGES, h } from "../../constants";
+import Button from "../../components/Button";
+import { Formik } from "formik";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import ImagePicker from "react-native-image-crop-picker";
+import { Dropdown } from "react-native-element-dropdown";
+import * as Yup from "yup";
 
-const EditCard = ({navigation, route}: any) => {
+const EditCard = ({ navigation, route }: any) => {
   const {
     id,
     first_Name,
@@ -49,18 +49,18 @@ const EditCard = ({navigation, route}: any) => {
     thread,
     pdfLink,
   } = route.params;
-  const {token} = useSelector((state: any) => state.employeeReducer);
+  const { token } = useSelector((state: any) => state.employeeReducer);
   const [image, setImage] = useState();
   const [logo, setLogo] = useState();
   const [gender, setGender] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const genderData = [
-    {label: 'male', value: 0},
-    {label: 'female', value: 1},
-    {label: 'rather not to say', value: 2},
+    { label: "male", value: 0 },
+    { label: "female", value: 1 },
+    { label: "rather not to say", value: 2 },
   ];
 
-  const link = 'https://linkmyte.com/';
+  const link = "https://linkmyte.com/";
 
   type FormValues = {
     firstName: string;
@@ -90,8 +90,8 @@ const EditCard = ({navigation, route}: any) => {
     whatsapp2: string;
   };
   const validation = Yup.object().shape({
-    firstName: Yup.string().required('required' as string),
-    jobTitle: Yup.string().required('required' as string),
+    firstName: Yup.string().required("required" as string),
+    jobTitle: Yup.string().required("required" as string),
     // lastName: Yup.string().required('required' as string),
     // email: Yup.string().required('required' as string),
     // websiteLink: Yup.string().required('required' as string),
@@ -124,7 +124,7 @@ const EditCard = ({navigation, route}: any) => {
 
       setImage(img);
     } catch (error) {
-      console.log('e', error);
+      console.log("e", error);
     }
   };
   const pickLogoImage = async () => {
@@ -137,7 +137,7 @@ const EditCard = ({navigation, route}: any) => {
 
       setLogo(img);
     } catch (error) {
-      console.log('e', error);
+      console.log("e", error);
     }
   };
 
@@ -145,143 +145,143 @@ const EditCard = ({navigation, route}: any) => {
     try {
       const formData = new FormData();
       if (image) {
-        formData.append('profile_pic', {
+        formData.append("profile_pic", {
           uri: image?.path,
-          name: 'logo.jpg',
+          name: "logo.jpg",
           type: image?.mime,
         });
       }
       if (logo) {
-        formData.append('brand_logo', {
+        formData.append("brand_logo", {
           uri: logo?.path,
-          name: 'logo.jpg',
+          name: "logo.jpg",
           type: logo?.mime,
         });
       }
-      formData.append('id', id);
+      formData.append("id", id);
 
       if (values.firstName) {
-        formData.append('first_name', values.firstName);
+        formData.append("first_name", values.firstName);
       }
 
       if (values.lastName) {
-        formData.append('last_name', values.lastName);
+        formData.append("last_name", values.lastName);
       }
 
       if (values.email) {
-        formData.append('email', values.email);
+        formData.append("email", values.email);
       }
 
       if (values.websiteLink) {
-        formData.append('website', values.websiteLink);
+        formData.append("website", values.websiteLink);
       }
 
       if (values.tiktok) {
-        formData.append('tiktoklink', values.tiktok);
+        formData.append("tiktoklink", values.tiktok);
       }
 
       if (values.thread) {
-        formData.append('threadlink', values.thread);
+        formData.append("threadlink", values.thread);
       }
 
       if (values.pdfLink) {
-        formData.append('pdflink', values.pdfLink);
+        formData.append("pdflink", values.pdfLink);
       }
 
       if (values.jobTitle) {
-        formData.append('job_title', values.jobTitle);
+        formData.append("job_title", values.jobTitle);
       }
 
       if (values.bio) {
-        formData.append('bio', values.bio);
+        formData.append("bio", values.bio);
       }
 
       if (values.arFirstName) {
-        formData.append('ar_first_name', values.arFirstName);
+        formData.append("ar_first_name", values.arFirstName);
       }
 
       if (values.arLastName) {
-        formData.append('ar_last_name', values.arLastName);
+        formData.append("ar_last_name", values.arLastName);
       }
 
       if (values.arJobTitle) {
-        formData.append('ar_job_title', values.arJobTitle);
+        formData.append("ar_job_title", values.arJobTitle);
       }
 
       if (values.arBio) {
-        formData.append('ar_bio', values.arBio);
+        formData.append("ar_bio", values.arBio);
       }
 
       if (values.instagram) {
-        formData.append('instagramlink', values.instagram);
+        formData.append("instagramlink", values.instagram);
       }
 
       if (values.facebook) {
-        formData.append('facebooklink', values.facebook);
+        formData.append("facebooklink", values.facebook);
       }
       if (values.snapchat) {
-        formData.append('snapchatlink', values.snapchat);
+        formData.append("snapchatlink", values.snapchat);
       }
       if (values.youtube) {
-        formData.append('youtublelink', values.youtube);
+        formData.append("youtublelink", values.youtube);
       }
 
       if (values.twitter) {
-        formData.append('twitterlink', values.twitter);
+        formData.append("twitterlink", values.twitter);
       }
 
       if (values.linkedin) {
-        formData.append('linkedinlink', values.linkedin);
+        formData.append("linkedinlink", values.linkedin);
       }
 
       if (values.googlemap) {
-        formData.append('googlemaplink', values.googlemap);
+        formData.append("googlemaplink", values.googlemap);
       }
 
       if (values.phone1) {
-        formData.append('mobile', values.phone1);
+        formData.append("mobile", values.phone1);
       }
 
       if (values.phone2) {
-        formData.append('second_mobile_no', values.phone2);
+        formData.append("second_mobile_no", values.phone2);
       }
 
       if (values.whatsapp1) {
-        formData.append('whatsup_number', values.whatsapp1);
+        formData.append("whatsup_number", values.whatsapp1);
       }
 
       if (values.whatsapp2) {
-        formData.append('second_whatsup_number', values.whatsapp2);
+        formData.append("second_whatsup_number", values.whatsapp2);
       }
 
       if (values.gender) {
-        formData.append('gender', values.gender);
+        formData.append("gender", values.gender);
       }
-      formData.append('status', 1);
-      formData.append('card_link_status', 1);
-      formData.append('initialized_status', 1);
-      formData.append('card_language', 1);
-      formData.append('premium_status', 1);
-      formData.append('subscription_status', 1);
+      formData.append("status", 1);
+      formData.append("card_link_status", 1);
+      formData.append("initialized_status", 1);
+      formData.append("card_language", 1);
+      formData.append("premium_status", 1);
+      formData.append("subscription_status", 1);
 
       setIsLoading(true);
-      console.log('working');
+      console.log("working");
 
-      const response = await axios.post('cards-detials-update', formData, {
+      const response = await axios.post("cards-detials-update", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('form Data', formData);
-      console.log('SUCCESS Update API', JSON.stringify(response, null, 4));
+      console.log("form Data", formData);
+      console.log("SUCCESS Update API", JSON.stringify(response, null, 4));
       Alert.alert(response?.data?.message);
       navigation.reset({
         index: 0,
-        routes: [{name: 'AppStack'}],
+        routes: [{ name: "AppStack" }],
       });
-    } catch (error: any) {
-      console.log('ERROR Update () API', JSON.stringify(error, null, 4));
+    } catch (error) {
+      console.log("ERROR Update () API", JSON.stringify(error, null, 4));
 
       return {
         error: true,
@@ -292,30 +292,32 @@ const EditCard = ({navigation, route}: any) => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 5000);
   }, [onSubmit]);
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
+            flexDirection: "row",
+            alignItems: "center",
             gap: 50,
-            justifyContent: 'center',
-          }}>
+            justifyContent: "center",
+          }}
+        >
           <View>
             <TouchableOpacity
               onPress={() => pickLogoImage()}
-              style={styles.logoBtn}>
+              style={styles.logoBtn}
+            >
               <Text style={styles.logoTxt}>Upload Logo</Text>
             </TouchableOpacity>
             <Image
               source={
                 logo
-                  ? {uri: logo?.path}
+                  ? { uri: logo?.path }
                   : brand_logo
-                  ? {uri: link + brand_logo}
+                  ? { uri: link + brand_logo }
                   : IMAGES.profileImg
               }
               style={styles.profileImg}
@@ -324,15 +326,16 @@ const EditCard = ({navigation, route}: any) => {
           <View>
             <TouchableOpacity
               onPress={() => pickProfileImage()}
-              style={styles.logoBtn}>
+              style={styles.logoBtn}
+            >
               <Text style={styles.logoTxt}>Profile Image</Text>
             </TouchableOpacity>
             <Image
               source={
                 image
-                  ? {uri: image?.path}
+                  ? { uri: image?.path }
                   : profileImg
-                  ? {uri: link + profileImg}
+                  ? { uri: link + profileImg }
                   : IMAGES.profileImg
               }
               style={styles.profileImg}
@@ -342,31 +345,31 @@ const EditCard = ({navigation, route}: any) => {
         <Formik
           enableReinitialize={true}
           initialValues={{
-            firstName: first_Name ?? '',
-            lastName: lastName ?? '',
-            email: email ?? '',
-            websiteLink: website ?? '',
-            tiktok: tiktok ?? '',
-            thread: thread ?? '',
-            pdfLink: pdfLink ?? '',
-            jobTitle: job_Title ?? '',
-            bio: bio ?? '',
-            gender: gendar ?? '',
-            arFirstName: ar_First_Name ?? '',
-            arLastName: ar_Last_Name ?? '',
-            arJobTitle: ar_Job_Title ?? '',
-            arBio: ar_Bio ?? '',
-            instagram: instagram ?? '',
-            facebook: facebook ?? '',
-            twitter: twitter ?? '',
-            snapchat: snapchat ?? '',
-            youtube: youtube ?? '',
-            linkedin: linkedIn ?? '',
-            googlemap: googlemap ?? '',
-            phone1: phone1 ?? '',
-            phone2: phone2 ?? '',
-            whatsapp1: whatsapp1 ?? '',
-            whatsapp2: whatsapp2 ?? '',
+            firstName: first_Name ?? "",
+            lastName: lastName ?? "",
+            email: email ?? "",
+            websiteLink: website ?? "",
+            tiktok: tiktok ?? "",
+            thread: thread ?? "",
+            pdfLink: pdfLink ?? "",
+            jobTitle: job_Title ?? "",
+            bio: bio ?? "",
+            gender: gendar ?? "",
+            arFirstName: ar_First_Name ?? "",
+            arLastName: ar_Last_Name ?? "",
+            arJobTitle: ar_Job_Title ?? "",
+            arBio: ar_Bio ?? "",
+            instagram: instagram ?? "",
+            facebook: facebook ?? "",
+            twitter: twitter ?? "",
+            snapchat: snapchat ?? "",
+            youtube: youtube ?? "",
+            linkedin: linkedIn ?? "",
+            googlemap: googlemap ?? "",
+            phone1: phone1 ?? "",
+            phone2: phone2 ?? "",
+            whatsapp1: whatsapp1 ?? "",
+            whatsapp2: whatsapp2 ?? "",
           }}
           onSubmit={onSubmit}
           validationSchema={validation}
@@ -384,10 +387,15 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>First Name</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{
+                    width: "100%",
+                    paddingHorizontal: 10,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                   placeholder="First Name"
                   value={values.firstName}
-                  onChangeText={handleChange('firstName')}
+                  onChangeText={handleChange("firstName")}
                 />
               </View>
               {errors.firstName && touched.firstName && (
@@ -396,18 +404,18 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Last Name</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Last Name"
-                  onChangeText={handleChange('lastName')}
+                  onChangeText={handleChange("lastName")}
                   value={values.lastName}
                 />
               </View>
               <Text style={styles.label}>Email</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Email"
-                  onChangeText={handleChange('email')}
+                  onChangeText={handleChange("email")}
                   value={values.email}
                 />
               </View>
@@ -420,22 +428,23 @@ const EditCard = ({navigation, route}: any) => {
                 data={genderData}
                 labelField="label"
                 valueField={values.gender}
-                placeholder={'Select Gender'}
+                placeholder={"Select Gender"}
                 value={gender}
                 onChange={(item: any) => {
-                  setGender({label: item?.label, value: item?.value});
-                  setFieldValue('gender', item?.label);
+                  setGender({ label: item?.label, value: item?.value });
+                  setFieldValue("gender", item?.label);
                 }}
-                renderItem={({label, value}: any) => {
+                renderItem={({ label, value }: any) => {
                   return (
                     <View
                       style={{
-                        padding: h('1%'),
+                        padding: h("1%"),
                         backgroundColor:
                           gender?.label === label
                             ? COLORS.secondary
                             : COLORS.white,
-                      }}>
+                      }}
+                    >
                       <Text
                         style={{
                           ...styles.itemTextStyle,
@@ -443,7 +452,8 @@ const EditCard = ({navigation, route}: any) => {
                             gender.label === label
                               ? COLORS.white
                               : COLORS.secondary,
-                        }}>
+                        }}
+                      >
                         {label}
                       </Text>
                     </View>
@@ -453,45 +463,45 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Website</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Website"
-                  onChangeText={handleChange('websiteLink')}
+                  onChangeText={handleChange("websiteLink")}
                   value={values.websiteLink}
                 />
               </View>
               <Text style={styles.label}>Tiktok Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://www.tiktok.com/@tiktok"
-                  onChangeText={handleChange('tiktok')}
+                  onChangeText={handleChange("tiktok")}
                   value={values.tiktok}
                 />
               </View>
               <Text style={styles.label}>Thread Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://thread.com/@ali"
-                  onChangeText={handleChange('thread')}
+                  onChangeText={handleChange("thread")}
                   value={values.thread}
                 />
               </View>
               <Text style={styles.label}>PDF Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="PDF Link"
-                  onChangeText={handleChange('pdfLink')}
+                  onChangeText={handleChange("pdfLink")}
                   value={values.pdfLink}
                 />
               </View>
               <Text style={styles.label}>Job Title</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Job Title"
-                  onChangeText={handleChange('jobTitle')}
+                  onChangeText={handleChange("jobTitle")}
                   value={values.jobTitle}
                 />
               </View>
@@ -501,72 +511,72 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Bio</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Bio"
-                  onChangeText={handleChange('bio')}
+                  onChangeText={handleChange("bio")}
                   value={values.bio}
                 />
               </View>
               <Text style={styles.label}>Arabic First Name</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Arabic First Name"
-                  onChangeText={handleChange('arFirstName')}
+                  onChangeText={handleChange("arFirstName")}
                   value={values.arFirstName}
                 />
               </View>
               <Text style={styles.label}>Arabic Last Name</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Arabic Last Name"
-                  onChangeText={handleChange('arLastName')}
+                  onChangeText={handleChange("arLastName")}
                   value={values.arLastName}
                 />
               </View>
               <Text style={styles.label}>Arabic Job Title</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Arabic Job Title"
-                  onChangeText={handleChange('arJobTitle')}
+                  onChangeText={handleChange("arJobTitle")}
                   value={values.arJobTitle}
                 />
               </View>
               <Text style={styles.label}>Arabic Bio</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Arabic Bio"
-                  onChangeText={handleChange('arBio')}
+                  onChangeText={handleChange("arBio")}
                   value={values.arBio}
                 />
               </View>
               <Text style={styles.label}>Instagram Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://instagram.com/username"
-                  onChangeText={handleChange('instagram')}
+                  onChangeText={handleChange("instagram")}
                   value={values.instagram}
                 />
               </View>
               <Text style={styles.label}>Facebook Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://www.facebook.com/Username"
-                  onChangeText={handleChange('facebook')}
+                  onChangeText={handleChange("facebook")}
                   value={values.facebook}
                 />
               </View>
               <Text style={styles.label}>Snapchat Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Snapchat Username"
-                  onChangeText={handleChange('snapchat')}
+                  onChangeText={handleChange("snapchat")}
                   value={values.snapchat}
                 />
               </View>
@@ -574,9 +584,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Youtube Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://www.youtube.com/Username"
-                  onChangeText={handleChange('youtube')}
+                  onChangeText={handleChange("youtube")}
                   value={values.youtube}
                 />
               </View>
@@ -584,9 +594,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Twitter Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://twitter.com/Username"
-                  onChangeText={handleChange('twitter')}
+                  onChangeText={handleChange("twitter")}
                   value={values.twitter}
                 />
               </View>
@@ -594,9 +604,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Linkedin Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://www.linkedin.com/in/username"
-                  onChangeText={handleChange('linkedin')}
+                  onChangeText={handleChange("linkedin")}
                   value={values.linkedin}
                 />
               </View>
@@ -604,9 +614,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Googlemaps Url</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="https://www.google.com/maps"
-                  onChangeText={handleChange('googlemap')}
+                  onChangeText={handleChange("googlemap")}
                   value={values.googlemap}
                 />
               </View>
@@ -614,9 +624,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Phone 1</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Phone Number 1"
-                  onChangeText={handleChange('phone1')}
+                  onChangeText={handleChange("phone1")}
                   value={values.phone1}
                 />
               </View>
@@ -624,9 +634,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Phone 2</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Phone Number 2"
-                  onChangeText={handleChange('phone2')}
+                  onChangeText={handleChange("phone2")}
                   value={values.phone2}
                 />
               </View>
@@ -634,9 +644,9 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Whatsapp 1</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Whatsapp Number 1"
-                  onChangeText={handleChange('whatsapp1')}
+                  onChangeText={handleChange("whatsapp1")}
                   value={values.whatsapp1}
                 />
               </View>
@@ -644,13 +654,15 @@ const EditCard = ({navigation, route}: any) => {
               <Text style={styles.label}>Whatsapp 2</Text>
               <View style={styles.inputContainer}>
                 <TextInput
-                  style={{width: '100%', paddingHorizontal: 10}}
+                  style={{ width: "100%", paddingHorizontal: 10 }}
                   placeholder="Whatsapp Number 2"
-                  onChangeText={handleChange('whatsapp2')}
+                  onChangeText={handleChange("whatsapp2")}
                   value={values.whatsapp2}
                 />
               </View>
-              <Button onPress={handleSubmit} primary title="Done" />
+              <View style={{ marginBottom: 30 }}>
+                <Button onPress={handleSubmit} primary title="Done" />
+              </View>
             </View>
           )}
         </Formik>
